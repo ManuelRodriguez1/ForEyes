@@ -1,0 +1,9 @@
+<div class="logo"></div>
+
+<form [formGroup]="loginForm" class="form">
+  <input formControlName="email" class="input" type="text" placeholder="User Name">
+  <input formControlName="password" type="password" class="input" placeholder="Password">
+  <label class="error">{{errorMessage}}</label>
+  <button class="button" type="submit" (click)="tryLogin(loginForm.value)">LOG IN</button>
+  <p> <a routerLink="/Register"> Create Account </a></p>
+</form>
