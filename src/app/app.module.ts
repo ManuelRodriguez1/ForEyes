@@ -18,6 +18,7 @@ import { UserResolver } from './components/user/user.resolver';
 import { AuthGuard } from './services/auth.guard';
 import { WeatherComponent } from './components/user/weather/weather.component';
 import { ContentComponent } from './components/user/content/content.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ContentComponent } from './components/user/content/content.component';
     UserComponent,
     RegisterComponent,
     WeatherComponent,
-    ContentComponent
+    ContentComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,

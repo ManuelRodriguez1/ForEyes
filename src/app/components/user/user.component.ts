@@ -20,7 +20,6 @@ export class UserComponent implements OnInit {
     public userService: UserService,
     public authService: AuthService,
     private route: ActivatedRoute,
-    // private location: Location,
     private fb: FormBuilder,
     private router: Router
   ) { }
@@ -51,7 +50,7 @@ export class UserComponent implements OnInit {
   logout(){
     this.authService.doLogout()
     .then((res) => {
-      this.router.navigate(['/Home']);
+      this.router.navigate(['/Login']);
     }, (error) => {
       console.log("Logout Error", error)
     })
