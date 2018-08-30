@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from "../environments/environment";
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { AuthGuard } from './services/auth.guard';
 import { WeatherComponent } from './components/user/weather/weather.component';
 import { ContentComponent } from './components/user/content/content.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { DropZoneDirective } from './directives/drop-zone.directive';
+import { FileSizePipe } from './pipes/file-size.pipe';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { SliderComponent } from './components/slider/slider.component';
     RegisterComponent,
     WeatherComponent,
     ContentComponent,
-    SliderComponent
+    SliderComponent,
+    DropZoneDirective,
+    FileSizePipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { SliderComponent } from './components/slider/slider.component';
     APP_ROUTER,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule    
+    AngularFireAuthModule,
+    AngularFireStorageModule    
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]

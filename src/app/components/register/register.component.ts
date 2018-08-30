@@ -34,6 +34,9 @@ export class RegisterComponent implements OnInit {
       console.log(res);
       this.errorMessage = "";
       this.successMessage = "Your account has been created";
+      setTimeout(() => {
+        this.router.navigate(['/Profile'])
+      }, 1000)
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
