@@ -65,13 +65,13 @@ export class WeatherComponent implements OnInit {
     const customMetadata = { app: 'Images to ForEyes' }
     //Menu de la tarea
     this.task = this.storage.upload(path, file, { customMetadata })
-    
+
     //Reglas storage para cuando este logueado
     // write : if request.resource.contentType.matches('image/.*')
     //Monitoreando el progreso
     this.percentage = this.task.percentageChanges()
     setTimeout(() =>{
-      this.downloadURL = this.storage.ref('/'+path).getDownloadURL()  
+      this.downloadURL = this.storage.ref('/'+path).getDownloadURL()
       this.snapshot = this.task.snapshotChanges().pipe(
         tap(snap => {
           if (snap.bytesTransferred === snap.totalBytes) {
@@ -84,9 +84,9 @@ export class WeatherComponent implements OnInit {
         })
       )
     },1000)
-    
+
     //La URL de descarga del archivo
-    // this.downloadURL = this.task.downloadURL()    
+    // this.downloadURL = this.task.downloadURL()
   }
 
   isActive(snapshot) {
