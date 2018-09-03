@@ -1,0 +1,10 @@
+<div class="logo"></div>
+
+<form [formGroup]="registerForm" class="form">
+  <input formControlName="email" class="input" type="email" placeholder="Email">
+  <input formControlName="password" type="password" class="input" placeholder="Password">
+  <label class="error">{{errorMessage}}</label>
+  <label class="success">{{successMessage}}</label>
+  <button class="button" type="submit" (click)="tryRegister(registerForm.value)">SIGN UP</button>
+  <p> Already have an account?<a routerLink="/Login"> Login </a></p>
+</form>
