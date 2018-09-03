@@ -87,7 +87,7 @@ export class WeatherComponent implements OnInit {
     const customMetadata = { app: 'Images to ForEyes' }
     //Menu de la tarea
     this.task = this.storage.upload(path, file, { customMetadata })
-    
+
     //Reglas storage para cuando este logueado
     // write : if request.resource.contentType.matches('image/.*')
     //Monitoreando el progreso

@@ -8,26 +8,35 @@ import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 
 import { AppComponent } from './app.component';
+import { WinterComponent } from './components/user/weather/winter/winter.component';
+import { SpringComponent } from './components/user/weather/spring/spring.component';
+import { SummerComponent } from './components/user/weather/summer/summer.component';
+import { FallComponent } from './components/user/weather/fall/fall.component';
+import { HolidayComponent } from './components/user/weather/holiday/holiday.component';
 import { LoginComponent } from './components/login/login.component';
-import { APP_ROUTER } from './router/router';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { UserResolver } from './components/user/user.resolver';
-import { AuthGuard } from './services/auth.guard';
 import { WeatherComponent } from './components/user/weather/weather.component';
 import { ContentComponent } from './components/user/content/content.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { FileSizePipe } from './pipes/file-size.pipe';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { APP_ROUTER } from './router/router';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { UserResolver } from './components/user/user.resolver';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
+    WinterComponent,
+    SpringComponent,
+    SummerComponent,
+    FallComponent,
+    HolidayComponent,
     LoginComponent,
     HomeComponent,
     UserComponent,
@@ -37,6 +46,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
     SliderComponent,
     DropZoneDirective,
     FileSizePipe
+
   ],
   imports: [
     BrowserModule,

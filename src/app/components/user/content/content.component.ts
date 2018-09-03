@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from "angularfire2/dat
 import * as firebase from 'firebase';
 import { Data } from "../../../models/user.model";
 
+
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
