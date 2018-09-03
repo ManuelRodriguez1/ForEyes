@@ -1,3 +1,57 @@
-<p>
-  content works!
-</p>
+<div class="content">
+  <div class="options">
+    <div class="logo"></div>
+    <div class="text">
+      <p>Uploads</p>
+    </div>
+    <div class="list">
+      <label for="trivia">
+        <p>Trivia</p>
+      </label>
+      <label for="daily">
+        <p>Daily Eye Care</p>
+      </label>
+      <label for="fun">
+        <p>Fun Facts</p>
+      </label>
+      <label for="interactive">
+        <p>Interactive Moods</p>
+      </label>
+
+      <div *ngIf="percentage | async as pct">
+        <progress [value]="pct" max="100"></progress>
+        {{ pct | number }}%
+      </div>
+      <div *ngIf="snapshot | async as snap">
+        {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes }}
+      </div>
+
+      <div *ngIf="downloadURL | async as url">
+          <h3>Results!</h3>
+          <img [src]="url"><br>
+          <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+        </div> 
+
+      <input type="file" (change)="startUpload($event.target.files, 'trivia')" name="trivia" id="trivia">
+      <input type="file" (change)="startUpload($event.target.files, 'daily')" name="daily" id="daily">
+      <input type="file" (change)="startUpload($event.target.files, 'fun')" name="fun" id="fun">
+      <input type="file" (change)="startUpload($event.target.files, 'interactive')" name="interactive" id="interactive">
+    </div>
+    <div class="otherlist">
+      <p>Back Up Images</p>
+    </div>
+  </div>
+  <div class="data">
+    <div class="contentonline">
+      <div class="boxes">
+        <div class="box" *ngFor="let l of list" [ngStyle]="{'background-image': 'url('+l.downloadURL+')'}">
+        </div>
+      </div>
+    </div>
+    <div class="contentoffine">
+      <div class="boxes">
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
+</div>

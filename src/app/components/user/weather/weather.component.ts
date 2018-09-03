@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+// import { tap, finalize } from 'rxjs/operators';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-weather',
@@ -16,24 +18,44 @@ export class WeatherComponent implements OnInit {
   snapshot: Observable<any>
   downloadURL: Observable<string>
 
+  imgsrc: any
   isHovering: boolean
   directory = '';
+  state: boolean = false;
 
-  public list = []
+  list: any[]
 
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+  constructor(private storage: AngularFireStorage, private db: AngularFirestore,
+  private afd: AngularFireDatabaseModule) { }
 
   ngOnInit() {
-    this.db.collection('ImagesVideos').snapshotChanges()
-      .subscribe((e) => {
-        this.list = [];
-        e.forEach((data: any) => {
-          this.list.push({
-            id: data.payload.doc.id,
-            src: data.payload.doc.data()
-          });
-        })
-      });
+    //Consulta datos con RealTime Database
+   
+    // firebase.database().ref('Images').on('value', function(snapshot){
+    //   console.log(snapshot.val())
+
+    //   // snapshot.forEach(element => {
+    //   //   console.log(element.val().downloadURL)
+    //   // });
+    //   // snapshot.forEach(data => {
+    //   //   this.list.push({
+    //   //     downloadURL: data.val().downloadURL
+          
+    //   //     // url: data.val().url
+    //   //   })
+    //   // })
+    // })
+    //Consulta datos con Cloud Firestore
+    // this.db.collection('ImagesVideos').snapshotChanges()
+    //   .subscribe((e) => {
+    //     this.list = [];
+    //     e.forEach((data: any) => {
+    //       this.list.push({
+    //         id: data.payload.doc.id,
+    //         src: data.payload.doc.data()
+    //       });
+    //     })
+    //   });
   }
 
   toggleHover(event: boolean) {
@@ -71,22 +93,35 @@ export class WeatherComponent implements OnInit {
     //Monitoreando el progreso
     this.percentage = this.task.percentageChanges()
     setTimeout(() =>{
-      this.downloadURL = this.storage.ref('/'+path).getDownloadURL()  
-      this.snapshot = this.task.snapshotChanges().pipe(
-        tap(snap => {
-          if (snap.bytesTransferred === snap.totalBytes) {
-            this.db.collection('ImagesVideos').add({
-              url: path,
-              date: new Date(),
-              downloadURL: this.downloadURL
-            })
-          }
-        })
-      )
-    },1000)
-    
-    //La URL de descarga del archivo
-    // this.downloadURL = this.task.downloadURL()    
+      this.downloadURL = this.storage.ref('/'+path).getDownloadURL()
+      this.downloadURL.subscribe(url => {
+        if(url){
+          this.imgsrc = url
+          console.log(this.imgsrc);
+
+          // this.snapshot = this.task.snapshotChanges().pipe(
+          //   tap(snap => {
+          //     if (snap.bytesTransferred === snap.totalBytes) {
+          //       this.db.collection('ImagesVideos').add({
+          //         url: path,
+          //         date: new Date(),
+          //         downloadURL: this.imgsrc
+          //       })
+          //     }
+          //   })
+          // );
+
+          firebase.database().ref('Images/').push({
+            url: path,
+            date: new Date(),
+            downloadURL: this.imgsrc
+          })
+
+          console.log(this.imgsrc+" cargue");
+        }
+      })
+
+    }, 1000) 
   }
 
   isActive(snapshot) {

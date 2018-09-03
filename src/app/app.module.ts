@@ -5,6 +5,7 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from "../environments/environment";
+import { AngularFireDatabaseModule } from "angularfire2/database";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -44,7 +45,8 @@ import { FileSizePipe } from './pipes/file-size.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule    
+    AngularFireStorageModule,
+    AngularFireDatabaseModule 
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]

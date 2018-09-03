@@ -9,3 +9,9 @@ export class FirebaseUserModel{
         this.provider = ""
     }
 }
+
+export class Data{
+    $key: string;
+    url: string;
+    downloadUrl: string;
+}
