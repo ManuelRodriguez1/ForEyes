@@ -7,11 +7,11 @@ import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from "../environments/environment";
 
 import { AppComponent } from './app.component';
-import { WinterComponent } from './winter/winter.component';
-import { SpringComponent } from './spring/spring.component';
-import { SummerComponent } from './summer/summer.component';
-import { FallComponent } from './fall/fall.component';
-import { HolidayComponent } from './holiday/holiday.component';
+import { WinterComponent } from './components/user/weather/winter/winter.component';
+import { SpringComponent } from './components/user/weather/spring/spring.component';
+import { SummerComponent } from './components/user/weather/summer/summer.component';
+import { FallComponent } from './components/user/weather/fall/fall.component';
+import { HolidayComponent } from './components/user/weather/holiday/holiday.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
