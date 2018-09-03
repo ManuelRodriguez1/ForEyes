@@ -18,7 +18,7 @@
         <p>Interactive Moods</p>
       </label>
 
-      <div *ngIf="percentage | async as pct">
+      <div class="porcent" [ngClass]="classVer" *ngIf="percentage | async as pct">
         <progress [value]="pct" max="100"></progress>
         {{ pct | number }}%
       </div>
@@ -28,8 +28,8 @@
 
       <div *ngIf="downloadURL | async as url">
           <h3>Results!</h3>
-          <img [src]="url"><br>
-          <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+          <img width="100%" height="120px" [src]="url"><br>
+          <!-- <a [href]="url" target="_blank" rel="noopener">Download Me!</a> -->
         </div> 
 
       <input type="file" (change)="startUpload($event.target.files, 'trivia')" name="trivia" id="trivia">
