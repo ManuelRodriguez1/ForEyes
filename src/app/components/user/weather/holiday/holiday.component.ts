@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-holiday',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./holiday.component.css']
 })
 export class HolidayComponent implements OnInit {
+  @Input() data: any;
 
   constructor() { }
 

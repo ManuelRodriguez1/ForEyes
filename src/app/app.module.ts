@@ -6,7 +6,6 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from "angularfire2/database";
-
 import { AppComponent } from './app.component';
 import { WinterComponent } from './components/user/weather/winter/winter.component';
 import { SpringComponent } from './components/user/weather/spring/spring.component';
@@ -28,6 +27,10 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { UserResolver } from './components/user/user.resolver';
 import { AuthGuard } from './services/auth.guard';
+import { Slider2Component } from './components/slider2/slider2.component';
+import { AdItemDirective } from './directives/ad-item.directive';
+import { PruebaComponent } from './components/user/weather/prueba/prueba.component';
+import { AdService } from './components/user/weather/ad.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { AuthGuard } from './services/auth.guard';
     ContentComponent,
     SliderComponent,
     DropZoneDirective,
-    FileSizePipe
+    FileSizePipe,
+    Slider2Component,
+    AdItemDirective,
+    PruebaComponent
 
   ],
   imports: [
@@ -56,9 +62,11 @@ import { AuthGuard } from './services/auth.guard';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule 
+    AngularFireDatabaseModule
   ],
-  providers: [AuthService, UserService, UserResolver, AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [AuthService, UserService, UserResolver, AuthGuard,AdService],
+  bootstrap: [AppComponent],
+  entryComponents: [FallComponent, HolidayComponent]
+
 })
 export class AppModule { }
