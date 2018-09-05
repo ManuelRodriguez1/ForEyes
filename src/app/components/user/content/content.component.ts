@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from "angularfire2/storage";
 import { Observable } from "rxjs";
-import { AngularFirestore } from "angularfire2/firestore";
-import { AngularFireDatabaseModule, AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase } from "angularfire2/database";
 import * as firebase from 'firebase';
 import { Data } from "../../../models/user.model";
 
@@ -22,6 +21,7 @@ export class ContentComponent implements OnInit {
   imgsrc: any
   directory = ''
   list: any[]
+  classVer = ''
 
   constructor(private storage: AngularFireStorage, private db: AngularFireDatabase) { }
 
@@ -38,6 +38,7 @@ export class ContentComponent implements OnInit {
   }
   //Funcion para subir las imagenes y los datos a la BD
   startUpload(event: FileList, folder: string) {
+    this.classVer = ''
     const file = event.item(0)
     if (file.type.split('/')[0] !== 'image') {
       console.error('Unsopported file type');
@@ -58,14 +59,11 @@ export class ContentComponent implements OnInit {
         break;
     }
     //Directorio donde queda guardado el archivo
-    const path = `${this.directory}/${new Date().getTime()}_${file.name}`
+    const path = `${this.directory}/${new Date().getTime()}_${file.name}`;
     //Metadatos opcionales
-    const customMetadata = { app: 'Images to ForEyes' }
+    const customMetadata = { app: 'Images to ForEyes' };
     //Menu de la tarea
-    this.task = this.storage.upload(path, file, { customMetadata })
-    this.task.then(function(snapshot){
-      console.log(snapshot.downloadURL)
-    })
+    this.task = this.storage.upload(path, file, { customMetadata });
     //Monitoreamos el progreso de subida
     this.percentage = this.task.percentageChanges()
     //Obtenemos el enlace de descarga de la imagen y la añadimos a la BD
@@ -84,7 +82,8 @@ export class ContentComponent implements OnInit {
           })
         }
       })
-    }, 1000);
+      this.classVer = 'oculto'
+    }, 2000);
   }
   //Funcion para el proceso de subida del archivo
   isActive(snapshot) {

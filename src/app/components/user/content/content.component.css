@@ -96,6 +96,13 @@
     margin-bottom: 40px;
     margin-left: 48px;
     margin-right: 48px;
+    width: 762px;
+    height: 561px;
+    display: grid;
+    grid-template-columns: repeat(4, 175px);
+    grid-column-gap: 22px;
+    grid-row-gap: 22px;
+    overflow: scroll;
 }
 .contentoffine{
     margin-top: 19px;
@@ -109,4 +116,15 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;    
+}
+.porcent{
+    margin-top: 10px;
+    text-align: right;
+}
+.porcent progress{
+    width: 100%;
+}
+.oculto{
+    transition: 0.5s;
+    display: none;
 }
